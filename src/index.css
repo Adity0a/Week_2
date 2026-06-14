@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+@import "tailwindcss";
+
+/* Enable class-based dark mode for Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #2563EB;
+  --color-secondary: #FBBF24;
+  --font-outfit: "Outfit", sans-serif;
+  --font-playfair: "Playfair", serif;
+}
+
+:root {
+  font-family: var(--font-outfit);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-gray-900 transition-colors duration-300 min-h-screen;
+}
+
+.dark body {
+  @apply bg-slate-950 text-gray-100;
+}
+
+/* Fix for potential white background in dark mode */
+.dark {
+  color-scheme: dark;
+  background-color: #020617; /* slate-950 */
+}
+
+/* Ensure smooth transitions for all theme-affected elements */
+* {
+  @apply transition-colors duration-200;
+}
