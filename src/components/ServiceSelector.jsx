@@ -2,10 +2,10 @@ import { assets } from "../assets/assets";
 
 const services = [
   { id: 'hotels', label: 'Hotels', icon: assets.homeIcon },
-  { id: 'flights', label: 'Flights', icon: assets.mountainIcon }, // Placeholder icon
-  { id: 'trains', label: 'Trains', icon: assets.calenderIcon }, // Placeholder icon
-  { id: 'buses', label: 'Buses', icon: assets.locationIcon }, // Placeholder icon
-  { id: 'cabs', label: 'Cabs', icon: assets.userIcon } // Placeholder icon
+  { id: 'flights', label: 'Flights', icon: assets.airplane },
+  { id: 'trains', label: 'Trains', icon: assets.train },
+  { id: 'buses', label: 'Buses', icon: assets.bus },
+  { id: 'cabs', label: 'Cabs', icon: assets.taxi }
 ];
 
 const ServiceSelector = ({ activeService, onServiceChange }) => {
@@ -24,7 +24,9 @@ const ServiceSelector = ({ activeService, onServiceChange }) => {
           <img
             src={service.icon}
             alt={service.label}
-            className={`h-4 w-4 ${activeService === service.id ? "invert-0" : "invert"}`}
+            className={`h-4 w-4 object-contain ${
+                (activeService !== service.id && service.id !== 'hotels') ? "" : (activeService === service.id ? "" : "invert")
+            }`}
           />
           <span className="text-sm font-bold uppercase tracking-wider">{service.label}</span>
         </button>

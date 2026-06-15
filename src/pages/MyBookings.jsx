@@ -1,48 +1,50 @@
 import { assets } from "../assets/assets";
 
-const mixedBookings = [
-  {
-    type: 'Flight',
-    name: 'SkyBlue Airways',
-    details: 'Economy (SB-204)',
-    address: 'NYC to LON',
-    guests: 1,
-    totalPrice: 299,
-    checkIn: 'September 20, 2025',
-    checkOut: 'September 20, 2025',
-    isPaid: true,
-    status: 'Confirmed',
-    image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?q=80&w=400"
-  },
-  {
-    type: 'Hotel',
-    name: 'Crystal Waters Resort',
-    details: 'Single Bed',
-    address: 'Night Sky Parkway, AZ, USA',
-    guests: 2,
-    totalPrice: 200,
-    checkIn: 'September 20, 2025',
-    checkOut: 'September 26, 2025',
-    isPaid: true,
-    status: 'Confirmed',
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=400"
-  },
-  {
-    type: 'Train',
-    name: 'Express Explorer',
-    details: 'First Class',
-    address: 'DEL to MUM',
-    guests: 2,
-    totalPrice: 170,
-    checkIn: 'September 20, 2025',
-    checkOut: 'September 20, 2025',
-    isPaid: false,
-    status: 'Pending',
-    image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=400"
-  }
-];
-
 const MyBookings = () => {
+  const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+  const mixedBookings = [
+    {
+      type: 'Flight',
+      name: 'SkyBlue Airways',
+      details: 'Economy (SB-204)',
+      address: 'NYC to LON',
+      guests: 1,
+      totalPrice: 299,
+      checkIn: today,
+      checkOut: today,
+      isPaid: true,
+      status: 'Confirmed',
+      image: "https://images.pexels.com/photos/1089306/pexels-photo-1089306.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      type: 'Hotel',
+      name: 'Crystal Waters Resort',
+      details: 'Single Bed',
+      address: 'Night Sky Parkway, AZ, USA',
+      guests: 2,
+      totalPrice: 200,
+      checkIn: today,
+      checkOut: 'September 26, 2025',
+      isPaid: true,
+      status: 'Confirmed',
+      image: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=800"
+    },
+    {
+      type: 'Train',
+      name: 'Express Explorer',
+      details: 'First Class',
+      address: 'DEL to MUM',
+      guests: 2,
+      totalPrice: 170,
+      checkIn: today,
+      checkOut: today,
+      isPaid: false,
+      status: 'Pending',
+      image: "https://images.pexels.com/photos/333525/pexels-photo-333525.jpeg?auto=compress&cs=tinysrgb&w=800"
+    }
+  ];
+
   const currentBooking = mixedBookings[0];
 
   return (
@@ -60,9 +62,17 @@ const MyBookings = () => {
              <div className="relative overflow-hidden rounded-[40px] bg-primary/5 dark:bg-slate-900 border border-primary/10 dark:border-slate-800 p-8 md:p-12 flex flex-col lg:flex-row items-center gap-12 transition-all hover:shadow-2xl hover:shadow-primary/5">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl" />
 
-                <div className="w-full lg:w-1/3 relative">
-                  <img src={currentBooking.image} alt="current" className="w-full h-64 object-cover rounded-[32px] shadow-2xl group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-black uppercase px-4 py-1.5 rounded-full shadow-lg">
+                <div className="w-full lg:w-1/3 relative z-20">
+                  <img
+                    src={currentBooking.image}
+                    alt="current"
+                    key={currentBooking.image}
+                    className="w-full h-64 object-cover rounded-[32px] shadow-2xl group-hover:scale-105 transition-transform duration-700 relative z-10"
+                    onError={(e) => {
+                      e.target.src = "https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&q=80&w=800";
+                    }}
+                  />
+                  <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-black uppercase px-4 py-1.5 rounded-full shadow-lg z-30">
                     {currentBooking.type}
                   </div>
                 </div>

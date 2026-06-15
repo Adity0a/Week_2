@@ -37,6 +37,10 @@ import listIcon from "./listIcon.svg";
 import uploadArea from "./uploadArea.svg";
 import totalBookingIcon from "./totalBookingIcon.svg";
 import totalRevenueIcon from "./totalRevenueIcon.svg";
+import airplane from "./airplane.png";
+import train from "./train.png";
+import bus from "./bus.png";
+import taxi from "./taxi.png";
 
 
 export const assets = {
@@ -72,6 +76,10 @@ export const assets = {
     uploadArea,
     totalBookingIcon,
     totalRevenueIcon,
+    airplane,
+    train,
+    bus,
+    taxi,
 }
 
 export const cities = [
