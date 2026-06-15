@@ -15,7 +15,7 @@ const FeatureDestination = () => {
             ))}
         </div>
 
-        <button onClick={()=>{navigate('/rooms'); window.scrollTo(0,0)}} className="mt-12 md:mt-16 px-10 py-3 text-sm font-bold border border-gray-300 dark:border-slate-700 rounded-full bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all cursor-pointer shadow-md hover:shadow-lg active:scale-95">
+        <button onClick={()=>{navigate('/rooms')}} className="mt-12 md:mt-16 px-10 py-3 text-sm font-bold border border-gray-300 dark:border-slate-700 rounded-full bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all cursor-pointer shadow-md hover:shadow-lg active:scale-95">
             View All Destinations
         </button>
     </div>

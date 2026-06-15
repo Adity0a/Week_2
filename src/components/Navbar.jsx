@@ -23,11 +23,15 @@ const BookIcon = () => (
 );
 
 const Navbar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Products", path: "/" },
-    { name: "Contact", path: "/" },
-    { name: "About", path: "/" },
+    { name: "Rooms", path: "/rooms" },
+    { name: "Flights", path: "/flights" },
+    { name: "Trains", path: "/trains" },
+    { name: "About", path: "/about" },
   ];
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,8 +39,6 @@ const Navbar = () => {
 
   const { openSignIn } = useClerk();
   const { user } = useUser();
-  const navigate = useNavigate();
-  const location = useLocation();
   const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -58,7 +60,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 w-full flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${
         isScrolled
-          ? "bg-white/20 dark:bg-slate-900/40 backdrop-blur-xl shadow-sm py-3 md:py-4 border-b border-white/5"
+          ? "bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-md py-3 md:py-4 border-b border-gray-100 dark:border-slate-800"
           : "bg-transparent py-4 md:py-6 text-white"
       }`}
     >
@@ -78,14 +80,18 @@ const Navbar = () => {
             key={i}
             to={link.path}
             className={`group flex flex-col gap-0.5 font-medium transition-colors ${
-              (isScrolled && !isDarkMode) ? "text-gray-800 hover:text-primary" : "text-white hover:text-gray-200"
+              location.pathname === link.path
+                ? "text-primary dark:text-blue-400"
+                : (isScrolled && !isDarkMode) ? "text-gray-800 hover:text-primary" : "text-white hover:text-gray-200"
             }`}
           >
             {link.name}
             <div
               className={`${
-                (isScrolled && !isDarkMode) ? "bg-primary" : "bg-white"
-              } h-0.5 w-0 group-hover:w-full transition-all duration-300`}
+                location.pathname === link.path
+                  ? "w-full bg-primary"
+                  : (isScrolled && !isDarkMode) ? "bg-primary" : "bg-white"
+              } h-0.5 ${location.pathname === link.path ? "w-full" : "w-0"} group-hover:w-full transition-all duration-300`}
             />
           </Link>
         ))}

@@ -1,7 +1,7 @@
 import Title from "./Title"
 import {assets, exclusiveOffers} from "../assets/assets"
  
-const ExcclusiveOffers = () => {
+const ExclusiveOffers = () => {
   return (
     <div className="px-6 md:px-16 lg:px-24 py-16 md:py-24 bg-white dark:bg-slate-900 transition-all duration-300">
         <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8 text-center md:text-left">
@@ -45,4 +45,4 @@ const ExcclusiveOffers = () => {
   )
 }
 
-export default ExcclusiveOffers
+export default ExclusiveOffers
