@@ -42,7 +42,7 @@ const HotelCard = ({ room, index }) => {
 
         <div className='flex items-center justify-between mt-auto pt-6'>
           <div className="flex flex-col">
-            <span className='text-2xl text-primary font-black'>${room.pricePerNight}</span>
+            <span className='text-2xl text-primary font-black'>₹{room.pricePerNight}</span>
             <span className='text-[10px] font-bold uppercase tracking-tighter opacity-60'>per night</span>
           </div>
           <button className='px-6 py-2.5 text-sm font-bold bg-primary text-white rounded-xl hover:bg-blue-600 active:scale-95 transition-all shadow-md hover:shadow-primary/40 cursor-pointer'>

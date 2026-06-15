@@ -9,6 +9,10 @@ import About from "./pages/About";
 import MyBookings from "./pages/MyBookings";
 import ScrollToTop from "./components/ScrollToTop";
 import ComingSoon from "./pages/ComingSoon";
+import Flights from "./pages/Flights";
+import Trains from "./pages/Trains";
+import Payment from "./pages/Payment";
+import BookingSuccess from "./pages/BookingSuccess";
 
 const App = () => {
   const isOwnerPath = useLocation().pathname.includes("owner");
@@ -25,8 +29,10 @@ const App = () => {
           <Route path="/exclusive-offers" element={<Offers />} />
           <Route path="/about" element={<About />} />
           <Route path="/my-bookings" element={<MyBookings />} />
-          <Route path="/flights" element={<ComingSoon serviceName="Flights" />} />
-          <Route path="/trains" element={<ComingSoon serviceName="Trains" />} />
+          <Route path="/flights" element={<Flights />} />
+          <Route path="/trains" element={<Trains />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/booking-success" element={<BookingSuccess />} />
           <Route path="/buses" element={<ComingSoon serviceName="Buses" />} />
           <Route path="/cabs" element={<ComingSoon serviceName="Cabs" />} />
         </Routes>

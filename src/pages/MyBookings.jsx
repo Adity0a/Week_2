@@ -1,60 +1,150 @@
-import { assets, userBookingsDummyData } from "../assets/assets";
+import { assets } from "../assets/assets";
+
+const mixedBookings = [
+  {
+    type: 'Flight',
+    name: 'SkyBlue Airways',
+    details: 'Economy (SB-204)',
+    address: 'NYC to LON',
+    guests: 1,
+    totalPrice: 299,
+    checkIn: 'September 20, 2025',
+    checkOut: 'September 20, 2025',
+    isPaid: true,
+    status: 'Confirmed',
+    image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?q=80&w=400"
+  },
+  {
+    type: 'Hotel',
+    name: 'Crystal Waters Resort',
+    details: 'Single Bed',
+    address: 'Night Sky Parkway, AZ, USA',
+    guests: 2,
+    totalPrice: 200,
+    checkIn: 'September 20, 2025',
+    checkOut: 'September 26, 2025',
+    isPaid: true,
+    status: 'Confirmed',
+    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=400"
+  },
+  {
+    type: 'Train',
+    name: 'Express Explorer',
+    details: 'First Class',
+    address: 'DEL to MUM',
+    guests: 2,
+    totalPrice: 170,
+    checkIn: 'September 20, 2025',
+    checkOut: 'September 20, 2025',
+    isPaid: false,
+    status: 'Pending',
+    image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=400"
+  }
+];
 
 const MyBookings = () => {
+  const currentBooking = mixedBookings[0];
+
   return (
-    <div className="pt-32 px-6 md:px-16 lg:px-24 xl:px-32 min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300">
+    <div className="pt-32 px-6 md:px-16 lg:px-24 xl:px-32 min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300 pb-20">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-playfair font-bold text-gray-900 dark:text-white">My Bookings</h1>
-        <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 mt-3 max-w-2xl leading-relaxed">
-          Easily manage your past, current, and upcoming hotel reservations in one place. Plan your trips seamlessly with just a few clicks.
+        <h1 className="text-3xl md:text-4xl font-playfair font-bold text-gray-900 dark:text-white">Travel History</h1>
+        <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 mt-3 max-w-2xl leading-relaxed font-light">
+          Review your upcoming adventures and past explorations. Everything you need for a smooth journey is right here.
         </p>
 
-        <div className="mt-12 overflow-x-auto">
+        {/* Current / Recent Booking Highlight */}
+        {currentBooking && (
+          <div className="mt-12 group">
+             <h2 className="text-xs font-black uppercase tracking-[0.2em] text-primary mb-6">Current Booking</h2>
+             <div className="relative overflow-hidden rounded-[40px] bg-primary/5 dark:bg-slate-900 border border-primary/10 dark:border-slate-800 p-8 md:p-12 flex flex-col lg:flex-row items-center gap-12 transition-all hover:shadow-2xl hover:shadow-primary/5">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl" />
+
+                <div className="w-full lg:w-1/3 relative">
+                  <img src={currentBooking.image} alt="current" className="w-full h-64 object-cover rounded-[32px] shadow-2xl group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-black uppercase px-4 py-1.5 rounded-full shadow-lg">
+                    {currentBooking.type}
+                  </div>
+                </div>
+
+                <div className="flex-1 flex flex-col items-start gap-6">
+                  <div>
+                    <h3 className="text-3xl md:text-4xl font-playfair font-bold text-gray-900 dark:text-white leading-tight">
+                      {currentBooking.name}
+                    </h3>
+                    <p className="text-gray-500 mt-2 font-medium tracking-wide">{currentBooking.address}</p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-8 w-full border-t border-gray-200/50 dark:border-slate-800 pt-6">
+                    <div className="flex flex-col">
+                      <span className="text-[10px] uppercase font-black text-gray-400 tracking-widest mb-1">Schedule</span>
+                      <span className="text-sm font-bold text-gray-800 dark:text-gray-200">{currentBooking.checkIn}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] uppercase font-black text-gray-400 tracking-widest mb-1">Status</span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
+                        <span className="text-sm font-bold text-green-600">{currentBooking.status}</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] uppercase font-black text-gray-400 tracking-widest mb-1">Total Paid</span>
+                      <span className="text-sm font-black text-gray-900 dark:text-white">₹{currentBooking.totalPrice}</span>
+                    </div>
+                  </div>
+
+                  <button className="px-10 py-4 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:bg-blue-600 transition-all active:scale-95 cursor-pointer mt-4">
+                    View Details
+                  </button>
+                </div>
+             </div>
+          </div>
+        )}
+
+        {/* List Section */}
+        <div className="mt-20 overflow-x-auto">
           <div className="min-w-[800px]">
-            {/* Header Row */}
-            <div className="grid grid-cols-6 pb-4 border-b border-gray-100 dark:border-slate-800 text-[10px] uppercase font-black text-gray-400 tracking-widest">
-              <div className="col-span-2">Hotels</div>
+            <h2 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 mb-8 px-4">All Reservations</h2>
+            <div className="grid grid-cols-6 pb-4 border-b border-gray-100 dark:border-slate-800 text-[10px] uppercase font-black text-gray-400 tracking-widest px-4">
+              <div className="col-span-2">Service & Details</div>
               <div className="col-span-3">Date & Timings</div>
               <div className="text-right">Payment</div>
             </div>
 
-            {/* Booking Items */}
             <div className="flex flex-col">
-              {userBookingsDummyData.map((booking, index) => (
-                <div key={index} className="grid grid-cols-6 py-8 border-b border-gray-50 dark:border-slate-900 items-center gap-6">
-                  {/* Hotel Info */}
+              {mixedBookings.map((booking, index) => (
+                <div key={index} className="grid grid-cols-6 py-8 border-b border-gray-50 dark:border-slate-900 items-center gap-6 hover:bg-gray-50/50 dark:hover:bg-slate-900/50 transition-colors px-4 rounded-2xl">
+                  {/* Info */}
                   <div className="col-span-2 flex items-center gap-4">
-                    <img
-                      src={booking.room.images[0]}
-                      alt="hotel"
-                      className="w-24 h-20 md:w-32 md:h-24 rounded-xl object-cover shadow-sm"
-                    />
+                    <div className="relative shrink-0">
+                      <img
+                        src={booking.image}
+                        alt="service"
+                        className="w-24 h-20 md:w-32 md:h-24 rounded-2xl object-cover shadow-sm"
+                      />
+                      <div className="absolute -top-2 -left-2 bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 text-gray-900 dark:text-white text-[8px] font-black uppercase px-2 py-1 rounded-md shadow-lg">
+                        {booking.type}
+                      </div>
+                    </div>
                     <div className="flex flex-col gap-1 overflow-hidden">
                       <h3 className="text-base font-bold text-gray-900 dark:text-white truncate">
-                        {booking.hotel.name} <span className="text-xs font-light opacity-60">({booking.room.roomType})</span>
+                        {booking.name}
                       </h3>
-                      <div className="flex items-center gap-1 text-xs text-gray-400">
-                        <img src={assets.locationIcon} alt="loc" className="h-3 dark:invert opacity-60" />
-                        <span className="truncate">{booking.hotel.address}</span>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-1">Guests: {booking.guests}</p>
-                      <p className="text-sm font-bold text-gray-900 dark:text-gray-100 mt-1">Total: ${booking.totalPrice}</p>
+                      <p className="text-xs text-gray-400 font-medium truncate italic">{booking.address}</p>
+                      <p className="text-[10px] text-gray-500 mt-1 uppercase font-bold tracking-tighter">{booking.details}</p>
+                      <p className="text-sm font-black text-gray-900 dark:text-gray-100 mt-2">₹{booking.totalPrice}</p>
                     </div>
                   </div>
 
                   {/* Dates */}
                   <div className="col-span-3 grid grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1">
-                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Check-In:</span>
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">
-                        {new Date(booking.checkInDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                      </span>
+                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Check-In / Dept:</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">{booking.checkIn}</span>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Check-Out:</span>
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">
-                        {new Date(booking.checkOutDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                      </span>
+                      <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Check-Out / Arr:</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">{booking.checkOut}</span>
                     </div>
                   </div>
 
